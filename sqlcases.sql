@@ -28,3 +28,13 @@ JOIN employee_database.performance as p
 ON d.employee_id = p.employee_id
 order by completion_rate desc
 ;
+
+-- "Find employees who attended many meetings (≥ 8) but had fewer tasks assigned (≤ 7). Are we underutilizing some of our team?"
+
+SELECT d.first_name, d.last_name, d.department, tasks_assigned, meeting_participation
+FROM employee_demographics as d
+JOIN employee_database.performance as p
+ON d.employee_id = p.employee_id
+where meeting_participation>= 8
+AND tasks_assigned <=7
+;
